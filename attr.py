@@ -1,9 +1,9 @@
 
 import streamlit as st
 import pandas as pd
-import openpyxl
+# import openpyxl
 
-df = pd.read_excel('attribute.xlsx' , sheet_name = "Subscriber Level")
+df = pd.read_csv('attribute.csv')
 
 df = df.drop(['SAMPLE VALUES', 'LATENCY' , 'DATA TYPE' , 'DATA OWNER', 'FREQUENCY OF REFRESH', 'REDSHIFT TABLE', 'CFU', 'SUBJECT AREA', 'BRAND','DERIVATION TYPE','PII CATEGORY','PII SUBCATEGORY'], axis=1)
 
