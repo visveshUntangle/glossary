@@ -9,7 +9,7 @@ df = df.drop(['SAMPLE VALUES', 'LATENCY' , 'DATA TYPE' , 'DATA OWNER', 'FREQUENC
 
 # df
 
-
+st.set_page_config(layout="wide")
 x = df['DATA CATEGORY'].value_counts()
 
 # y = x.plot(kind='bar');
@@ -19,19 +19,25 @@ st.bar_chart(x)
 
 
 
-option = st.selectbox(
-    'Select category of Attribute',
-     df['DATA CATEGORY'].unique())
+# option = st.selectbox(
+#     'Select category of Attribute',
+#      df['DATA CATEGORY'].unique())
 
-'You selected: ', option
+# 'You selected: ', option
+
+st.write("Types of Attributes")
+p = df['DATA CATEGORY'].unique()
+
+# st.write(type(df['DATA CATEGORY'].unique()))
 
 
 
+for ele in p:
+    st.subheader(ele)
+    res_df = df[df['DATA CATEGORY'].isin([ele])]
 
-res_df = df[df['DATA CATEGORY'].isin([option])]
+    st.metric(label= "Number of Attributes" ,value= res_df.shape[0])
 
-st.metric(label= "Number of Attributes" ,value= res_df.shape[0])
+    res = res_df.drop(['DATA CATEGORY'],axis= 1)
 
-res = res_df.drop(['DATA CATEGORY'],axis= 1)
-
-st.table(res)
+    st.table(res)
