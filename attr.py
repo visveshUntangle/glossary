@@ -1,6 +1,7 @@
 
 import streamlit as st
 import pandas as pd
+import openpyxl
 
 df = pd.read_excel('attribute.xlsx' , sheet_name = "Subscriber Level")
 
@@ -33,4 +34,4 @@ st.metric(label= "Number of Attributes" ,value= res_df.shape[0])
 
 res = res_df.drop(['DATA CATEGORY'],axis= 1)
 
-res
+st.table(res)
